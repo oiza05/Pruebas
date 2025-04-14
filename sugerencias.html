@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Formulario de nuevas propuestas - UNIGARA"
+    />
+    <title>Nueva Propuesta - UNIGARA</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header" role="banner">
+        <a href="index.html" class="logo">UNIGARA</a>
+        <div class="logo-icons">
+          <div class="u-logo" aria-hidden="true">U</div>
+          <div class="logo-square" aria-hidden="true"></div>
+          <button class="menu-icon" aria-label="Abrir menú" id="menuToggle">
+            <span class="menu-line"></span>
+            <span class="menu-line"></span>
+            <span class="menu-line"></span>
+          </button>
+        </div>
+
+        <!-- Menú desplegable -->
+        <nav class="dropdown-menu" id="dropdownMenu">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li>
+              <a href="sugerencias.html" class="active">Nueva sugerencia</a>
+            </li>
+            <li><a href="#">Mi perfil</a></li>
+            <li><a href="#">Configuración</a></li>
+            <li><a href="#">Cerrar sesión</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="content" role="main">
+        <section class="user-info" aria-labelledby="user-profile">
+          <div class="user-avatar" role="img" aria-label="Foto de perfil"></div>
+          <div class="user-details">
+            <h2 id="user-profile" class="user-name">XYZ</h2>
+            <div class="user-program">Grado en .....</div>
+            <div class="user-email">XYZ@opendeusto.es</div>
+          </div>
+        </section>
+
+        <form class="form-container" id="suggestionForm">
+          <div class="form-section">
+            <label for="proposal" class="form-label">Propuesta</label>
+            <div class="text-area-container">
+              <textarea
+                id="proposal"
+                class="text-area"
+                placeholder="Escribe aquí tu propuesta..."
+                maxlength="200"
+                required
+                aria-describedby="proposal-counter"
+              ></textarea>
+              <div id="proposal-counter" class="word-limit">
+                0/200 caracteres
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <label for="help-text" class="form-label"
+              >¿Cómo puede ayudar?</label
+            >
+            <div class="text-area-container">
+              <textarea
+                id="help-text"
+                class="help-text-area"
+                placeholder="Describe cómo esta propuesta puede ayudar a la comunidad..."
+                required
+                aria-describedby="help-counter"
+              ></textarea>
+              <div id="help-counter" class="word-limit">0/300 caracteres</div>
+            </div>
+          </div>
+
+          <div class="category-section">
+            <label class="form-label">Categoría</label>
+            <div class="category-options">
+              <div class="category-option">
+                <input
+                  type="radio"
+                  id="cat-facilities"
+                  name="category"
+                  value="facilities"
+                  required
+                />
+                <label for="cat-facilities">Instalaciones</label>
+              </div>
+              <div class="category-option">
+                <input
+                  type="radio"
+                  id="cat-academic"
+                  name="category"
+                  value="academic"
+                />
+                <label for="cat-academic">Académico</label>
+              </div>
+              <div class="category-option">
+                <input
+                  type="radio"
+                  id="cat-services"
+                  name="category"
+                  value="services"
+                />
+                <label for="cat-services">Servicios</label>
+              </div>
+              <div class="category-option">
+                <input
+                  type="radio"
+                  id="cat-other"
+                  name="category"
+                  value="other"
+                />
+                <label for="cat-other">Otro</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="agreement-section">
+            <div class="checkbox-container">
+              <input type="checkbox" id="terms" required />
+              <label class="checkbox-label" for="terms">
+                Acepto los
+                <a href="#" class="terms-link">términos y condiciones</a> de
+                servicio
+              </label>
+            </div>
+
+            <div class="checkbox-container">
+              <input type="checkbox" id="privacy" required />
+              <label class="checkbox-label" for="privacy">
+                Acepto los
+                <a href="#" class="terms-link">términos de privacidad</a>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="submit-btn" id="submitBtn">
+              ENVIAR
+            </button>
+            <button type="button" class="preview-btn">VISTA PREVIA</button>
+          </div>
+        </form>
+      </main>
+
+      <nav class="navigation" role="navigation">
+        <a
+          href="index.html"
+          class="nav-icon"
+          aria-label="Inicio"
+          title="Inicio"
+        >
+          <div class="home-icon"></div>
+        </a>
+        <a href="#" class="nav-icon" aria-label="Noticias" title="Noticias">
+          <div class="news-icon"></div>
+        </a>
+        <a
+          href="#"
+          class="nav-icon"
+          aria-label="Menú de aplicaciones"
+          title="Aplicaciones"
+        >
+          <div class="grid-icon">
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+          </div>
+        </a>
+        <a
+          href="#"
+          class="nav-icon"
+          aria-label="Notificaciones"
+          title="Notificaciones"
+        >
+          <div class="notification-icon"></div>
+          <span class="notification-badge">2</span>
+        </a>
+      </nav>
+
+      <!-- Modal de éxito -->
+      <div class="modal" id="successModal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <div class="success-icon">✓</div>
+          <h3>¡Propuesta enviada con éxito!</h3>
+          <p>Tu sugerencia ha sido registrada y será revisada por el equipo.</p>
+          <a href="index.html" class="modal-btn">Ver ranking</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

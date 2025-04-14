@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="UNIGARA - Plataforma de sugerencias universitarias"
+    />
+    <title>UNIGARA - Mejora tu universidad</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header" role="banner">
+        <a href="index.html" class="logo">UNIGARA</a>
+        <div class="logo-icons">
+          <div class="u-logo" aria-hidden="true">U</div>
+          <div class="logo-square" aria-hidden="true"></div>
+          <button class="menu-icon" aria-label="Abrir menú" id="menuToggle">
+            <span class="menu-line"></span>
+            <span class="menu-line"></span>
+            <span class="menu-line"></span>
+          </button>
+        </div>
+
+        <!-- Menú desplegable -->
+        <nav class="dropdown-menu" id="dropdownMenu">
+          <ul>
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li><a href="sugerencias.html">Nueva sugerencia</a></li>
+            <li><a href="#">Mi perfil</a></li>
+            <li><a href="#">Configuración</a></li>
+            <li><a href="#">Cerrar sesión</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="content" role="main">
+        <section class="main-message" aria-labelledby="welcome-heading">
+          <h1 id="welcome-heading">Bienvenido a UNIGARA</h1>
+          <p>
+            Tu plataforma para mejorar la universidad. Vota por las mejores
+            propuestas o crea las tuyas.
+          </p>
+        </section>
+
+        <section class="ranking" aria-labelledby="ranking-heading">
+          <h2 id="ranking-heading">Ranking de Sugerencias</h2>
+
+          <div class="proposal-list">
+            <!-- Item 1 -->
+            <article class="proposal-item" data-proposal-id="1">
+              <div class="proposal-number">1</div>
+              <div class="proposal-content">
+                <h3 class="proposal-text">Sillas en cafetería</h3>
+                <p class="proposal-description">
+                  Renovación de mobiliario en cafetería central
+                </p>
+              </div>
+              <div class="proposal-stats">
+                <div class="proposal-score" data-votes="103">103</div>
+                <div class="progress-container" title="100% completado">
+                  <div class="progress-bar" style="width: 100%"></div>
+                </div>
+                <button
+                  class="vote-button"
+                  aria-label="Votar por esta propuesta"
+                >
+                  <span class="vote-icon">+</span>
+                </button>
+              </div>
+            </article>
+
+            <!-- Item 2 -->
+            <article class="proposal-item" data-proposal-id="2">
+              <div class="proposal-number">2</div>
+              <div class="proposal-content">
+                <h3 class="proposal-text">Renovación de cámaras</h3>
+                <p class="proposal-description">
+                  Sistema de vigilancia actualizado para mayor seguridad
+                </p>
+              </div>
+              <div class="proposal-stats">
+                <div class="proposal-score" data-votes="75">75</div>
+                <div class="progress-container" title="73% completado">
+                  <div class="progress-bar" style="width: 73%"></div>
+                </div>
+                <button
+                  class="vote-button"
+                  aria-label="Votar por esta propuesta"
+                >
+                  <span class="vote-icon">+</span>
+                </button>
+              </div>
+            </article>
+
+            <!-- Item 3 -->
+            <article class="proposal-item" data-proposal-id="3">
+              <div class="proposal-number">3</div>
+              <div class="proposal-content">
+                <h3 class="proposal-text">Ventilación en cancha</h3>
+                <p class="proposal-description">
+                  Mejorar sistema de aire en pabellón deportivo
+                </p>
+              </div>
+              <div class="proposal-stats">
+                <div class="proposal-score" data-votes="69">69</div>
+                <div class="progress-container" title="67% completado">
+                  <div class="progress-bar" style="width: 67%"></div>
+                </div>
+                <button
+                  class="vote-button"
+                  aria-label="Votar por esta propuesta"
+                >
+                  <span class="vote-icon">+</span>
+                </button>
+              </div>
+            </article>
+
+            <!-- Item 4 (Nuevo) -->
+            <article class="proposal-item" data-proposal-id="4">
+              <div class="proposal-number">4</div>
+              <div class="proposal-content">
+                <h3 class="proposal-text">WiFi biblioteca</h3>
+                <p class="proposal-description">
+                  Mejorar la cobertura en salas de estudio
+                </p>
+              </div>
+              <div class="proposal-stats">
+                <div class="proposal-score" data-votes="58">58</div>
+                <div class="progress-container" title="56% completado">
+                  <div class="progress-bar" style="width: 56%"></div>
+                </div>
+                <button
+                  class="vote-button"
+                  aria-label="Votar por esta propuesta"
+                >
+                  <span class="vote-icon">+</span>
+                </button>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <a
+        href="sugerencias.html"
+        class="floating-button"
+        aria-label="Crear nueva sugerencia"
+        >+</a
+      >
+
+      <nav class="navigation" role="navigation">
+        <a
+          href="index.html"
+          class="nav-icon"
+          aria-label="Inicio"
+          title="Inicio"
+        >
+          <div class="home-icon active"></div>
+        </a>
+        <a href="#" class="nav-icon" aria-label="Noticias" title="Noticias">
+          <div class="news-icon"></div>
+        </a>
+        <a
+          href="#"
+          class="nav-icon"
+          aria-label="Menú de aplicaciones"
+          title="Aplicaciones"
+        >
+          <div class="grid-icon">
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+          </div>
+        </a>
+        <a
+          href="#"
+          class="nav-icon"
+          aria-label="Notificaciones"
+          title="Notificaciones"
+        >
+          <div class="notification-icon"></div>
+          <span class="notification-badge">2</span>
+        </a>
+      </nav>
+    </div>
+  </body>
+</html>
