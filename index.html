@@ -51,6 +51,165 @@
             propuestas o crea las tuyas.
           </p>
         </section>
+        <!-- Añadir esto después de la sección "main-message" en index.html -->
+        <div class="search-container">
+          <input
+            type="text"
+            class="search-bar"
+            id="proposalSearch"
+            placeholder="Buscar propuestas..."
+          />
+          <div class="search-icon">🔍</div>
+        </div>
+
+        <script>
+          // Añadir al final de app.js
+          document.addEventListener("DOMContentLoaded", function () {
+            const searchInput = document.getElementById("proposalSearch");
+            if (searchInput) {
+              searchInput.addEventListener("input", function () {
+                const searchTerm = this.value.toLowerCase();
+                const proposals = document.querySelectorAll(".proposal-item");
+
+                proposals.forEach((proposal) => {
+                  const title = proposal
+                    .querySelector(".proposal-text")
+                    .textContent.toLowerCase();
+                  const description = proposal
+                    .querySelector(".proposal-description")
+                    .textContent.toLowerCase();
+
+                  if (
+                    title.includes(searchTerm) ||
+                    description.includes(searchTerm)
+                  ) {
+                    proposal.style.display = "flex";
+                  } else {
+                    proposal.style.display = "none";
+                  }
+                });
+              });
+            }
+          });
+        </script>
+        <!-- Añadir después del search-container en index.html -->
+        <div class="filter-controls">
+          <div class="filter-group">
+            <label class="filter-label">Filtrar por categoría</label>
+            <select id="categoryFilter" class="filter-select">
+              <option value="all">Todas las categorías</option>
+              <option value="facilities">Instalaciones</option>
+              <option value="academic">Académico</option>
+              <option value="services">Servicios</option>
+              <option value="other">Otro</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label class="filter-label">Ordenar por</label>
+            <select id="sortFilter" class="filter-select">
+              <option value="votes">Más votados</option>
+              <option value="date">Más recientes</option>
+            </select>
+          </div>
+        </div>
+
+        <script>
+          // Añadir al final de app.js
+          document.addEventListener("DOMContentLoaded", function () {
+            // Asignar categorías a las propuestas (simulado)
+            const proposalCategories = {
+              1: "facilities",
+              2: "services",
+              3: "facilities",
+              4: "academic",
+            };
+
+            // Asignar fechas simuladas a las propuestas
+            const proposalDates = {
+              1: new Date("2025-04-10"),
+              2: new Date("2025-04-05"),
+              3: new Date("2025-04-12"),
+              4: new Date("2025-04-01"),
+            };
+
+            // Configurar atributos de datos para cada propuesta
+            document.querySelectorAll(".proposal-item").forEach((item) => {
+              const id = item.getAttribute("data-proposal-id");
+              item.setAttribute(
+                "data-category",
+                proposalCategories[id] || "other"
+              );
+              item.setAttribute(
+                "data-date",
+                proposalDates[id]?.toISOString() || new Date().toISOString()
+              );
+            });
+
+            // Filtrado por categoría
+            const categoryFilter = document.getElementById("categoryFilter");
+            if (categoryFilter) {
+              categoryFilter.addEventListener("change", filterProposals);
+            }
+
+            // Ordenación
+            const sortFilter = document.getElementById("sortFilter");
+            if (sortFilter) {
+              sortFilter.addEventListener("change", filterProposals);
+            }
+
+            function filterProposals() {
+              const selectedCategory = categoryFilter.value;
+              const sortBy = sortFilter.value;
+              const proposals = Array.from(
+                document.querySelectorAll(".proposal-item")
+              );
+              const proposalList = document.querySelector(".proposal-list");
+
+              // Filtrar por categoría
+              const filteredProposals = proposals.filter((proposal) => {
+                if (selectedCategory === "all") return true;
+                return (
+                  proposal.getAttribute("data-category") === selectedCategory
+                );
+              });
+
+              // Ordenar
+              filteredProposals.sort((a, b) => {
+                if (sortBy === "votes") {
+                  const votesA = parseInt(
+                    a
+                      .querySelector(".proposal-score")
+                      .getAttribute("data-votes")
+                  );
+                  const votesB = parseInt(
+                    b
+                      .querySelector(".proposal-score")
+                      .getAttribute("data-votes")
+                  );
+                  return votesB - votesA;
+                } else if (sortBy === "date") {
+                  const dateA = new Date(a.getAttribute("data-date"));
+                  const dateB = new Date(b.getAttribute("data-date"));
+                  return dateB - dateA;
+                }
+                return 0;
+              });
+
+              // Actualizar la numeración
+              filteredProposals.forEach((proposal, index) => {
+                proposal.querySelector(".proposal-number").textContent =
+                  index + 1;
+              });
+
+              // Limpiar y re-renderizar
+              proposalList.innerHTML = "";
+              filteredProposals.forEach((proposal) => {
+                proposalList.appendChild(proposal);
+                proposal.style.display = "flex";
+              });
+            }
+          });
+        </script>
 
         <section class="ranking" aria-labelledby="ranking-heading">
           <h2 id="ranking-heading">Ranking de Sugerencias</h2>
