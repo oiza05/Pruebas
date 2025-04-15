@@ -6,6 +6,8 @@ import { setupThemeSwitcher } from "./modules/theme.js";
 import { setupPreview } from "./modules/preview.js";
 import { setupProposalDetailModal } from "./modules/proposalDetails.js";
 import { setupAccessibility } from "./modules/accessibility.js";
+import { setupFilters } from "./modules/filterSystem.js";
+import { setupSearch } from "./modules/searchSystem.js";
 document.addEventListener("DOMContentLoaded", () => {
   setupMenuToggle();
   setupCharacterCounter();
@@ -15,4 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setupPreview();
   setupProposalDetailModal();
   setupAccessibility();
+  setupFilters();
+  setupSearch();
 });

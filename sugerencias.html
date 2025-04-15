@@ -16,13 +16,22 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <script src="app.js" defer></script>
     <script type="module" src="main.js"></script>
   </head>
   <body>
     <div class="container">
       <header class="header" role="banner">
         <a href="index.html" class="logo">UNIGARA</a>
+        <div class="theme-switch-wrapper">
+          <label
+            class="theme-switch"
+            aria-label="Modo oscuro"
+            for="themeToggle"
+          >
+            <input type="checkbox" id="themeToggle" />
+            <span class="slider"></span>
+          </label>
+        </div>
         <div class="logo-icons">
           <div class="u-logo" aria-hidden="true">U</div>
           <div class="logo-square" aria-hidden="true"></div>

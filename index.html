@@ -8,7 +8,6 @@
       content="UNIGARA - Plataforma de sugerencias universitarias"
     />
     <link rel="icon" type="image/png" href="u-icon.png" />
-
     <title>UNIGARA - Mejora tu universidad</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,16 +16,26 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <script src="app.js" defer></script>
     <script type="module" src="main.js"></script>
   </head>
   <body>
     <div class="container">
       <header class="header" role="banner">
         <a href="index.html" class="logo">UNIGARA</a>
+        <div class="theme-switch-wrapper">
+          <label
+            class="theme-switch"
+            aria-label="Modo oscuro"
+            for="themeToggle"
+          >
+            <input type="checkbox" id="themeToggle" />
+            <span class="slider"></span>
+          </label>
+        </div>
         <div class="logo-icons">
           <div class="u-logo" aria-hidden="true">U</div>
           <div class="logo-square" aria-hidden="true"></div>
+
           <button class="menu-icon" aria-label="Abrir menú" id="menuToggle">
             <span class="menu-line"></span>
             <span class="menu-line"></span>
@@ -67,33 +76,34 @@
 
         <script>
           // Añadir al final de app.js
-          document.addEventListener("DOMContentLoaded", function () {
-            const searchInput = document.getElementById("proposalSearch");
-            if (searchInput) {
-              searchInput.addEventListener("input", function () {
-                const searchTerm = this.value.toLowerCase();
-                const proposals = document.querySelectorAll(".proposal-item");
+          // document.addEventListener("DOMContentLoaded", function () {
+          //   const searchInput = document.getElementById("proposalSearch");
+          //     if (searchInput) {
+          //       searchInput.addEventListener("input", function () {
+          //         const searchTerm = this.value.toLowerCase();
+          //         const proposals = document.querySelectorAll(".proposal-item");
 
-                proposals.forEach((proposal) => {
-                  const title = proposal
-                    .querySelector(".proposal-text")
-                    .textContent.toLowerCase();
-                  const description = proposal
-                    .querySelector(".proposal-description")
-                    .textContent.toLowerCase();
+          //         proposals.forEach((proposal) => {
+          //           const title = proposal
+          //             .querySelector(".proposal-text")
+          //             .textContent.toLowerCase();
+          //           const description = proposal
+          //             .querySelector(".proposal-description")
+          //             .textContent.toLowerCase();
 
-                  if (
-                    title.includes(searchTerm) ||
-                    description.includes(searchTerm)
-                  ) {
-                    proposal.style.display = "flex";
-                  } else {
-                    proposal.style.display = "none";
-                  }
-                });
-              });
-            }
-          });
+          //           if (
+          //             title.includes(searchTerm) ||
+          //             description.includes(searchTerm)
+          //           ) {
+          //             proposal.style.display = "flex";
+          //           } else {
+          //             proposal.style.display = "none";
+          //           }
+          //         });
+          //       });
+          //     }
+          //   });
+          //
         </script>
         <!-- Añadir después del search-container en index.html -->
         <div class="filter-controls">
@@ -116,102 +126,104 @@
           </div>
         </div>
 
+        
         <script>
           // Añadir al final de app.js
-          document.addEventListener("DOMContentLoaded", function () {
-            // Asignar categorías a las propuestas (simulado)
-            const proposalCategories = {
-              1: "facilities",
-              2: "services",
-              3: "facilities",
-              4: "academic",
-            };
+          //document.addEventListener("DOMContentLoaded", function () {
+          // // Asignar categorías a las propuestas (simulado)
+          // const proposalCategories = {
+          //   1: "facilities",
+          //   2: "services",
+          //   3: "facilities",
+          //   4: "academic",
+          // };
 
-            // Asignar fechas simuladas a las propuestas
-            const proposalDates = {
-              1: new Date("2025-04-10"),
-              2: new Date("2025-04-05"),
-              3: new Date("2025-04-12"),
-              4: new Date("2025-04-01"),
-            };
+          // // Asignar fechas simuladas a las propuestas
+          // const proposalDates = {
+          //   1: new Date("2025-04-10"),
+          //   2: new Date("2025-04-05"),
+          //   3: new Date("2025-04-12"),
+          //   4: new Date("2025-04-01"),
+          // };
 
-            // Configurar atributos de datos para cada propuesta
-            document.querySelectorAll(".proposal-item").forEach((item) => {
-              const id = item.getAttribute("data-proposal-id");
-              item.setAttribute(
-                "data-category",
-                proposalCategories[id] || "other"
-              );
-              item.setAttribute(
-                "data-date",
-                proposalDates[id]?.toISOString() || new Date().toISOString()
-              );
-            });
+          // // Configurar atributos de datos para cada propuesta
+          // document.querySelectorAll(".proposal-item").forEach((item) => {
+          //   const id = item.getAttribute("data-proposal-id");
+          //   item.setAttribute(
+          //     "data-category",
+          //     proposalCategories[id] || "other"
+          //   );
+          //   item.setAttribute(
+          //     "data-date",
+          //     proposalDates[id]?.toISOString() || new Date().toISOString()
+          //   );
+          // });
 
-            // Filtrado por categoría
-            const categoryFilter = document.getElementById("categoryFilter");
-            if (categoryFilter) {
-              categoryFilter.addEventListener("change", filterProposals);
-            }
+          // // Filtrado por categoría
+          // const categoryFilter = document.getElementById("categoryFilter");
+          // if (categoryFilter) {
+          //   categoryFilter.addEventListener("change", filterProposals);
+          // }
 
-            // Ordenación
-            const sortFilter = document.getElementById("sortFilter");
-            if (sortFilter) {
-              sortFilter.addEventListener("change", filterProposals);
-            }
+          // // Ordenación
+          // const sortFilter = document.getElementById("sortFilter");
+          // if (sortFilter) {
+          //   sortFilter.addEventListener("change", filterProposals);
+          // }
 
-            function filterProposals() {
-              const selectedCategory = categoryFilter.value;
-              const sortBy = sortFilter.value;
-              const proposals = Array.from(
-                document.querySelectorAll(".proposal-item")
-              );
-              const proposalList = document.querySelector(".proposal-list");
+          // function filterProposals() {
+          //   const selectedCategory = categoryFilter.value;
+          //   const sortBy = sortFilter.value;
+          //   const proposals = Array.from(
+          //   document.querySelectorAll(".proposal-item")
+          // );
+          // const proposalList = document.querySelector(".proposal-list");
 
-              // Filtrar por categoría
-              const filteredProposals = proposals.filter((proposal) => {
-                if (selectedCategory === "all") return true;
-                return (
-                  proposal.getAttribute("data-category") === selectedCategory
-                );
-              });
+          // // Filtrar por categoría
+          // const filteredProposals = proposals.filter((proposal) => {
+          //   if (selectedCategory === "all") return true;
+          //   return (
+          //     proposal.getAttribute("data-category") === selectedCategory
+          //   );
+          // });
 
-              // Ordenar
-              filteredProposals.sort((a, b) => {
-                if (sortBy === "votes") {
-                  const votesA = parseInt(
-                    a
-                      .querySelector(".proposal-score")
-                      .getAttribute("data-votes")
-                  );
-                  const votesB = parseInt(
-                    b
-                      .querySelector(".proposal-score")
-                      .getAttribute("data-votes")
-                  );
-                  return votesB - votesA;
-                } else if (sortBy === "date") {
-                  const dateA = new Date(a.getAttribute("data-date"));
-                  const dateB = new Date(b.getAttribute("data-date"));
-                  return dateB - dateA;
-                }
-                return 0;
-              });
+          // // Ordenar
+          // filteredProposals.sort((a, b) => {
+          //   if (sortBy === "votes") {
+          //     const votesA = parseInt(
+          //       a
+          //         .querySelector(".proposal-score")
+          //         .getAttribute("data-votes")
+          //     );
+          //     const votesB = parseInt(
+          //       b
+          //         .querySelector(".proposal-score")
+          //         .getAttribute("data-votes")
+          //     );
+          //           return votesB - votesA;
+          //         } else if (sortBy === "date") {
+          //           const dateA = new Date(a.getAttribute("data-date"));
+          //           const dateB = new Date(b.getAttribute("data-date"));
+          //           return dateB - dateA;
+          //         }
+          //         return 0;
+          //       });
 
-              // Actualizar la numeración
-              filteredProposals.forEach((proposal, index) => {
-                proposal.querySelector(".proposal-number").textContent =
-                  index + 1;
-              });
+          //       // Actualizar la numeración
+          //       filteredProposals.forEach((proposal, index) => {
+          //         proposal.querySelector(".proposal-number").textContent =
+          //           index + 1;
+          //       });
 
-              // Limpiar y re-renderizar
-              proposalList.innerHTML = "";
-              filteredProposals.forEach((proposal) => {
-                proposalList.appendChild(proposal);
-                proposal.style.display = "flex";
-              });
-            }
-          });
+          //       // Limpiar y re-renderizar
+          //       proposalList.innerHTML = "";
+          //       filteredProposals.forEach((proposal) => {
+          //         proposalList.appendChild(proposal);
+          //         proposal.style.display = "flex";
+          //       });
+          //     }
+          //   });
+          //
         </script>
 
         <section class="ranking" aria-labelledby="ranking-heading">

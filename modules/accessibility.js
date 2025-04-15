@@ -1,12 +1,11 @@
 // Ejecutar cuando el DOM esté completamente cargado
 export function setupAccessibility() {
   // --- Detalles de Propuesta y Comentarios ---
-  document.addEventListener("DOMContentLoaded", function () {
-    // --- Skip Link y mejora de navegación con teclado ---
-    document.addEventListener("DOMContentLoaded", function () {
-      // Mejorar el contraste de textos en modo oscuro
-      const improveContrast = document.createElement("style");
-      improveContrast.textContent = `
+
+  // --- Skip Link y mejora de navegación con teclado ---
+  // Mejorar el contraste de textos en modo oscuro
+  const improveContrast = document.createElement("style");
+  improveContrast.textContent = `
         [data-theme="dark"] .proposal-text {
           color: #a5a5ff; /* Mejor contraste para textos en fondo oscuro */
         }
@@ -37,42 +36,40 @@ export function setupAccessibility() {
           top: 0;
         }
       `;
-      document.head.appendChild(improveContrast);
+  document.head.appendChild(improveContrast);
 
-      // Añadir skip link
-      const skipLink = document.createElement("a");
-      skipLink.className = "skip-link";
-      skipLink.href = "#content"; // Asegúrate de tener <main id="content">...</main> en tu HTML
-      skipLink.textContent = "Saltar al contenido principal";
-      document.body.insertBefore(skipLink, document.body.firstChild);
+  // Añadir skip link
+  const skipLink = document.createElement("a");
+  skipLink.className = "skip-link";
+  skipLink.href = "#content"; // Asegúrate de tener <main id="content">...</main> en tu HTML
+  skipLink.textContent = "Saltar al contenido principal";
+  document.body.insertBefore(skipLink, document.body.firstChild);
 
-      // Añadir atributos ARIA a elementos interactivos (propuestas)
-      document.querySelectorAll(".proposal-item").forEach((item) => {
-        item.setAttribute("role", "button");
-        item.setAttribute("tabindex", "0");
-        item.setAttribute(
-          "aria-label",
-          `Propuesta: ${item.querySelector(".proposal-text").textContent}`
-        );
+  // Añadir atributos ARIA a elementos interactivos (propuestas)
+  document.querySelectorAll(".proposal-item").forEach((item) => {
+    item.setAttribute("role", "button");
+    item.setAttribute("tabindex", "0");
+    item.setAttribute(
+      "aria-label",
+      `Propuesta: ${item.querySelector(".proposal-text").textContent}`
+    );
 
-        // Permitir navegación con teclado
-        item.addEventListener("keydown", function (e) {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            item.click();
-          }
-        });
-      });
+    // Permitir navegación con teclado
+    item.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        item.click();
+      }
+    });
+  });
 
-      // Mejorar botón de voto para teclado
-      document.querySelectorAll(".vote-button").forEach((button) => {
-        button.addEventListener("keydown", function (e) {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            button.click();
-          }
-        });
-      });
+  // Mejorar botón de voto para teclado
+  document.querySelectorAll(".vote-button").forEach((button) => {
+    button.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        button.click();
+      }
     });
   });
 }
