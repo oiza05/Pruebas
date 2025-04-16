@@ -10,10 +10,8 @@ export function setupLogout() {
       localStorage.removeItem("userData");
 
       // Mostrar el modal de login (suponiendo que el id es "loginModal")
-      const loginModal = document.getElementById("loginModal");
-      if (loginModal) {
-        loginModal.style.display = "flex";
-      }
+      // Recargar la página para reiniciar el estado visual
+      window.location.reload();
     });
   }
 }

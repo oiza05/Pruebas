@@ -240,9 +240,9 @@
       </nav>
     </div>
     <!-- Modal de Login -->
-    <div id="loginModal" class="show">
+    <div id="loginModal" class="modal">
       <div class="modal-content">
-        <button class="close-modal">&times;</button>
+        <button class="close-modal" id="closeLogin">&times;</button>
         <h3>Iniciar Sesión</h3>
 
         <form id="loginForm">
@@ -252,6 +252,7 @@
               type="text"
               id="username"
               class="login-input"
+              name="name"
               placeholder="Ingresa tu usuario"
               required
             />
@@ -262,6 +263,7 @@
             <input
               type="password"
               id="password"
+              name="password"
               class="login-input"
               placeholder="Ingresa tu contraseña"
               required

@@ -3,14 +3,9 @@ export function setupLogin() {
   const loginForm = document.getElementById("loginForm");
   const closeLogin = document.getElementById("closeLogin");
 
-  const isLogged = localStorage.getItem("isLoggedIn");
-  if (!isLogged) {
-    loginModal.style.display = "flex";
-  }
-
   if (closeLogin) {
     closeLogin.addEventListener("click", () => {
-      loginModal.style.display = "none";
+      loginModal.classList.remove("show"); // ✅ Solo cerrar
     });
   }
 
@@ -18,31 +13,40 @@ export function setupLogin() {
     e.preventDefault();
 
     const nameInput = loginForm.querySelector('input[name="name"]');
-    const emailInput = loginForm.querySelector('input[type="email"]');
-    const passwordInput = loginForm.querySelector('input[type="password"]');
+    const passwordInput = loginForm.querySelector('input[name="password"]');
 
-    const name = nameInput.value;
-    const email = emailInput.value;
-    const password = passwordInput.value;
+    const name = nameInput?.value || "";
+    const password = passwordInput?.value || "";
 
-    if (name && email && password) {
+    if (name && password) {
       const userData = {
         name: name,
-        email: email,
+        email: `${name.toLowerCase()}@unigara.fake`,
         photo: "https://via.placeholder.com/60",
       };
 
       localStorage.setItem("userData", JSON.stringify(userData));
       localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("showWelcome", "true");
 
-      loginModal.style.display = "none";
-      window.location.href = "index.html"; // Redirección opcional
+      // Espera un momento para asegurar que localStorage esté listo
+      setTimeout(() => {
+        window.location.replace("index.html");
+      }, 100);
     }
   });
 
+  // Cerrar si clic fuera del modal
   window.addEventListener("click", (e) => {
     if (e.target === loginModal) {
-      loginModal.style.display = "none";
+      loginModal.classList.remove("show");
     }
   });
+
+  const isLogged = localStorage.getItem("isLoggedIn");
+  if (!isLogged && loginModal) {
+    loginModal.classList.add("show"); // ✅ mostrar
+  } else {
+    loginModal.classList.remove("show"); // ✅ ocultar si ya está logueado
+  }
 }

@@ -348,6 +348,7 @@
 /* Estilo para el modal de login (similar al modal de éxito) */
 /* Modal base */
 #loginModal {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -367,6 +368,7 @@
 #loginModal.show {
   opacity: 1;
   visibility: visible;
+  display: flex;
 }
 
 /* Contenido del modal */
