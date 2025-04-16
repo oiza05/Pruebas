@@ -4,10 +4,10 @@ export function setupLogin() {
   const closeLogin = document.getElementById("closeLogin");
 
   // Verificar si el usuario ya está logueado según localStorage
-  // const isLogged = localStorage.getItem("isLoggedIn");
-  //if (!isLogged) {
-  loginModal.style.display = "flex"; // Muestra el modal si no está logueado
-  //}
+  const isLogged = localStorage.getItem("isLoggedIn");
+  if (!isLogged) {
+    loginModal.style.display = "flex"; // Muestra el modal si no está logueado
+  }
 
   // Evento para cerrar el modal manualmente (opcional)
   if (closeLogin) {
