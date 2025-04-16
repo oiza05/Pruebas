@@ -1,8 +1,6 @@
 export function setupVotingSystem() {
-  // Selecciona todos los botones de voto
   const voteButtons = document.querySelectorAll(".vote-button");
 
-  // Función para mostrar mensajes de confirmación con una clase extra para estilos
   function showMessage(proposalItem, text, extraClass = "") {
     const messageDiv = document.createElement("div");
     messageDiv.className = "vote-message " + extraClass;
@@ -13,9 +11,6 @@ export function setupVotingSystem() {
     }, 2000);
   }
 
-  // ================================
-  // FUNCIÓN: Cargar votos guardados y actualizar botón
-  // ================================
   function loadVotes() {
     const savedVotes = JSON.parse(
       localStorage.getItem("unigara_votes") || "{}"
@@ -30,14 +25,11 @@ export function setupVotingSystem() {
       const button = item.querySelector(".vote-button");
       const voteIcon = button.querySelector(".vote-icon");
 
-      // Actualiza votos totales si existen
       if (savedVotes[proposalId] !== undefined) {
         scoreElement.textContent = savedVotes[proposalId];
         scoreElement.setAttribute("data-votes", savedVotes[proposalId]);
       }
 
-      // Actualiza el botón según si ya votó el usuario:
-      // Muestra "–" si ya votó (acción: quitar voto) o "+" si aún no ha votado (acción: votar)
       if (userVotes.includes(proposalId)) {
         button.classList.add("already-voted");
         voteIcon.textContent = "–";
@@ -46,11 +38,35 @@ export function setupVotingSystem() {
         voteIcon.textContent = "+";
       }
     });
+
+    updateProgressBars();
   }
 
-  // ============================================
-  // FUNCIÓN: Actualizar votos en localStorage
-  // ============================================
+  function updateProgressBars() {
+    const proposals = Array.from(document.querySelectorAll(".proposal-item"));
+    const votesArray = proposals.map((item) =>
+      parseInt(item.querySelector(".proposal-score").getAttribute("data-votes"))
+    );
+    const maxVotes = Math.max(...votesArray, 1);
+
+    proposals.forEach((item) => {
+      const votes = parseInt(
+        item.querySelector(".proposal-score").getAttribute("data-votes")
+      );
+      const percent = Math.round((votes / maxVotes) * 100);
+
+      const progressBar = item.querySelector(".progress-bar");
+      if (progressBar) {
+        progressBar.style.width = `${percent}%`;
+      }
+
+      const progressContainer = item.querySelector(".progress-container");
+      if (progressContainer) {
+        progressContainer.setAttribute("title", `${percent}% completado`);
+      }
+    });
+  }
+
   function saveVote(proposalId, votes) {
     const savedVotes = JSON.parse(
       localStorage.getItem("unigara_votes") || "{}"
@@ -59,7 +75,6 @@ export function setupVotingSystem() {
     localStorage.setItem("unigara_votes", JSON.stringify(savedVotes));
   }
 
-  // Función: Marcar o quitar voto del usuario
   function updateUserVote(proposalId, add) {
     let userVotes = JSON.parse(
       localStorage.getItem("unigara_user_votes") || "[]"
@@ -69,18 +84,13 @@ export function setupVotingSystem() {
         userVotes.push(proposalId);
       }
     } else {
-      // Quitar el voto eliminando el id de la propuesta
       userVotes = userVotes.filter((id) => id !== proposalId);
     }
     localStorage.setItem("unigara_user_votes", JSON.stringify(userVotes));
   }
 
-  // Carga inicial de votos y configuración de botones
   loadVotes();
 
-  // ==================================
-  // EVENTOS: Clic en botones de votar / quitar voto
-  // ==================================
   voteButtons.forEach((button) => {
     button.addEventListener("click", function () {
       const proposalItem = this.closest(".proposal-item");
@@ -89,13 +99,11 @@ export function setupVotingSystem() {
       const voteIcon = this.querySelector(".vote-icon");
       let currentVotes = parseInt(scoreElement.getAttribute("data-votes"));
 
-      // Verifica si el usuario ya votó
       const userVotes = JSON.parse(
         localStorage.getItem("unigara_user_votes") || "[]"
       );
 
       if (userVotes.includes(proposalId)) {
-        // Acción: Quitar voto
         currentVotes = currentVotes > 0 ? currentVotes - 1 : 0;
         scoreElement.textContent = currentVotes;
         scoreElement.setAttribute("data-votes", currentVotes);
@@ -103,14 +111,12 @@ export function setupVotingSystem() {
         saveVote(proposalId, currentVotes);
         updateUserVote(proposalId, false);
 
-        // Actualiza el botón a "+" para poder votar de nuevo
         this.classList.remove("already-voted");
         voteIcon.textContent = "+";
 
-        // Mostrar mensaje en rojo al quitar el voto
         showMessage(proposalItem, "¡Voto retirado!", "withdrawn-message");
+        updateProgressBars();
       } else {
-        // Acción: Votar
         currentVotes++;
         scoreElement.textContent = currentVotes;
         scoreElement.setAttribute("data-votes", currentVotes);
@@ -118,19 +124,15 @@ export function setupVotingSystem() {
         saveVote(proposalId, currentVotes);
         updateUserVote(proposalId, true);
 
-        // Actualiza el botón a "–" para permitir quitar voto posteriormente
         this.classList.add("already-voted");
         voteIcon.textContent = "–";
 
-        // Mostrar mensaje en verde al votar
         showMessage(proposalItem, "¡Gracias por votar!");
+        updateProgressBars();
       }
     });
   });
 
-  // =====================================
-  // ESTILOS DINÁMICOS: Botón y mensajes
-  // =====================================
   const style = document.createElement("style");
   style.textContent = `
     .vote-button.already-voted {
@@ -153,16 +155,14 @@ export function setupVotingSystem() {
       box-shadow: 0 2px 4px rgba(0,0,0,0.2);
       animation: fadeIn 0.3s, fadeOut 0.5s 1.7s;
     }
-    /* Estilo por defecto (mensaje de voto) en verde */
     .vote-message:not(.withdrawn-message) {
-      background-color: #e0ffe0;  /* Fondo verde claro */
-      color: #006400;             /* Texto verde oscuro */
+      background-color: #e0ffe0;
+      color: #006400;
       border-color: #90ee90;
     }
-    /* Estilo para mensaje de quitar voto en rojo */
     .vote-message.withdrawn-message {
-      background-color: #ffe0e0;  /* Fondo rojo claro */
-      color: #8b0000;             /* Texto rojo oscuro */
+      background-color: #ffe0e0;
+      color: #8b0000;
       border-color: #ff9999;
     }
     @keyframes fadeIn {

@@ -12,16 +12,16 @@ export function setupLogin() {
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const nameInput = loginForm.querySelector('input[name="name"]');
+    const emailInput = loginForm.querySelector('input[name="email"]');
     const passwordInput = loginForm.querySelector('input[name="password"]');
 
-    const name = nameInput?.value || "";
+    const email = emailInput?.value || "";
     const password = passwordInput?.value || "";
 
-    if (name && password) {
+    if (email && password) {
       const userData = {
-        name: name,
-        email: `${name.toLowerCase()}@unigara.fake`,
+        name: email.split("@")[0], // usa la parte antes del @ como nombre
+        email: email,
         photo: "https://via.placeholder.com/60",
       };
 
