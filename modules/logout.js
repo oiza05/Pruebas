@@ -7,6 +7,7 @@ export function setupLogout() {
 
       // Eliminar la variable de autenticación del localStorage
       localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("userData");
 
       // Mostrar el modal de login (suponiendo que el id es "loginModal")
       const loginModal = document.getElementById("loginModal");

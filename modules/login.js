@@ -3,39 +3,45 @@ export function setupLogin() {
   const loginForm = document.getElementById("loginForm");
   const closeLogin = document.getElementById("closeLogin");
 
-  // Verificar si el usuario ya está logueado según localStorage
   const isLogged = localStorage.getItem("isLoggedIn");
   if (!isLogged) {
-    loginModal.style.display = "flex"; // Muestra el modal si no está logueado
+    loginModal.style.display = "flex";
   }
 
-  // Evento para cerrar el modal manualmente (opcional)
   if (closeLogin) {
     closeLogin.addEventListener("click", () => {
-      // Opcionalmente, puedes quitar la posibilidad de cerrar el modal hasta que se loguee
       loginModal.style.display = "none";
     });
   }
 
-  // Cuando el usuario envía el formulario de login
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    // Aquí puedes validar los datos del login.
-    // Por simplicidad, se guarda el flag sin validaciones reales.
-    localStorage.setItem("isLoggedIn", "true");
+    const nameInput = loginForm.querySelector('input[name="name"]');
+    const emailInput = loginForm.querySelector('input[type="email"]');
+    const passwordInput = loginForm.querySelector('input[type="password"]');
 
-    // Ocultar el modal y redirigir o refrescar la página si es necesario
-    loginModal.style.display = "none";
-    // Opcionalmente, si quieres redirigir:
-    window.location.href = "index.html";
+    const name = nameInput.value;
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    if (name && email && password) {
+      const userData = {
+        name: name,
+        email: email,
+        photo: "https://via.placeholder.com/60",
+      };
+
+      localStorage.setItem("userData", JSON.stringify(userData));
+      localStorage.setItem("isLoggedIn", "true");
+
+      loginModal.style.display = "none";
+      window.location.href = "index.html"; // Redirección opcional
+    }
   });
 
-  // Cerrar el modal si se hace clic fuera del contenido
   window.addEventListener("click", (e) => {
     if (e.target === loginModal) {
-      // En este ejemplo, si se hace clic fuera, se cierra el modal.
-      // Puedes comentar esta línea si quieres obligar a loguearse.
       loginModal.style.display = "none";
     }
   });

@@ -10,6 +10,7 @@ import { setupFilters } from "./modules/filterSystem.js";
 import { setupSearch } from "./modules/searchSystem.js";
 import { setupLogin } from "./modules/login.js";
 import { setupLogout } from "./modules/logout.js";
+import { setupUserProfile } from "./modules/profile.js";
 document.addEventListener("DOMContentLoaded", () => {
   setupMenuToggle();
   setupCharacterCounter();
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupPreview();
   setupProposalDetailModal();
   setupAccessibility();
+  setupUserProfile();
   setupFilters();
   setupSearch();
   setupLogin();

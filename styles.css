@@ -1212,49 +1212,10 @@ input:checked + .slider:after {
 .modal-btn:hover {
   background-color: #3632a8;
 }
-/* Estilo para el modal de login (similar al modal de éxito) */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: none; /* Se mostrará sólo cuando se requiera */
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  backdrop-filter: blur(5px);
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #ffd700; /* Amarillo */
 }
 
-.modal-content {
-  background-color: var(--white);
-  border-radius: var(--border-radius-lg);
-  width: 90%;
-  max-width: 400px;
-  padding: 30px;
-  position: relative;
-  animation: fadeIn 0.3s ease-in-out;
-  text-align: center;
-}
-
-/* Botón para cerrar el modal (opcional) */
-.close-modal {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 24px;
-  color: var(--dark-text);
-  cursor: pointer;
-}
-
-/* Estilo para los inputs del modal de login */
-.login-input {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: var(--border-radius-md);
-  font-size: 16px;
-}
