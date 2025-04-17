@@ -1,0 +1,28 @@
+/* ====================== CONTENIDO GENERAL ====================== */
+.content {
+  flex: 1;
+  width: 100%;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.main-message {
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.main-message h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.main-message p {
+  font-size: 16px;
+  color: var(--light-text);
+}

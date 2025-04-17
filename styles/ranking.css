@@ -1,0 +1,155 @@
+/* ====================== RANKING DE SUGERENCIAS ====================== */
+.ranking {
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.ranking h2 {
+  font-size: 22px;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.proposal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.proposal-item {
+  display: flex;
+  align-items: stretch;
+  background-color: var(--light-bg);
+  border: 2px solid var(--accent-color);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  transition: transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.proposal-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+}
+
+.proposal-number {
+  width: 40px;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.proposal-content {
+  flex: 1;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.proposal-text {
+  font-weight: 700;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.proposal-description {
+  font-size: 14px;
+  color: var(--light-text);
+}
+
+.proposal-meta {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--light-text);
+}
+
+.proposal-category {
+  background-color: rgba(51, 0, 204, 0.1);
+  padding: 3px 8px;
+  border-radius: 12px;
+  margin-right: 10px;
+}
+
+.proposal-date {
+  display: flex;
+  align-items: center;
+}
+
+.proposal-date::before {
+  content: "🕒";
+  margin-right: 4px;
+}
+
+.proposal-stats {
+  display: flex;
+  align-items: center;
+  padding-right: 15px;
+}
+
+.proposal-score {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--dark-text);
+  margin: 0 10px;
+  min-width: 30px;
+  text-align: center;
+}
+
+.progress-container {
+  width: 80px;
+  height: 10px;
+  background-color: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  transition: width 0.5s ease-in-out;
+}
+
+.vote-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  border: none;
+  color: var(--primary-color);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: transform var(--transition-fast);
+}
+
+.vote-button:hover {
+  transform: scale(1.1);
+}
+
+.vote-button.voted {
+  animation: pulse 0.3s ease-in-out;
+}
+
+.vote-icon {
+  line-height: 1;
+}
