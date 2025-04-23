@@ -1,4 +1,3 @@
-
 /* ====================== PERFIL DE USUARIO ====================== */
 .user-info {
   display: flex;
@@ -14,23 +13,18 @@
 .user-avatar {
   width: 60px;
   height: 60px;
-  background: var(--accent-gradient);
   border-radius: 50%;
   margin-right: 15px;
-  position: relative;
   overflow: hidden;
+  /* Elimina los gradientes o colores de fondo anteriores */
+  background: none;
+    
 }
 
-.user-avatar:after {
-  content: "";
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 30px;
-  height: 30px;
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Para que la imagen cubra bien el círculo */
 }
 
 .user-details {
@@ -229,13 +223,6 @@
 .modal-btn:hover {
   background-color: #3632a8;
 }
-.user-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: #ffd700; /* Amarillo */
-}
-
 
 /* ====================== RANKING DE SUGERENCIAS PREMIUM ====================== */
 /* Mejoras avanzadas para las tarjetas de propuesta */
@@ -258,7 +245,7 @@
 }
 
 .proposal-item::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -285,7 +272,7 @@
 }
 
 .proposal-number::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -15px;
   right: -10px;
@@ -296,7 +283,7 @@
 }
 
 .proposal-number::before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -10px;
   left: -15px;
@@ -327,7 +314,7 @@
 }
 
 .proposal-text::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: -3px;
@@ -354,7 +341,11 @@
   display: flex;
   align-items: center;
   padding: 10px 15px;
-  background: linear-gradient(to right, rgba(245, 245, 255, 0.4), rgba(235, 235, 255, 0.8));
+  background: linear-gradient(
+    to right,
+    rgba(245, 245, 255, 0.4),
+    rgba(235, 235, 255, 0.8)
+  );
   border-radius: 12px;
   margin-left: auto;
   backdrop-filter: blur(5px);
@@ -372,7 +363,7 @@
 }
 
 .proposal-score::after {
-  content: 'votos';
+  content: "votos";
   display: block;
   font-size: 10px;
   font-weight: normal;
@@ -406,18 +397,22 @@
 }
 
 .progress-bar::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 50%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0)
+  );
   border-radius: 10px 10px 0 0;
 }
 
 .progress-bar::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -464,20 +459,24 @@
 }
 
 .vote-button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at center, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%);
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: -1;
 }
 
 .vote-button::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -5px;
   right: -5px;
@@ -543,8 +542,9 @@
   top: 18px;
   z-index: 10;
   border: none;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-  animation: floatIn 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28), floatOut 0.5s ease-in 1.7s forwards;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  animation: floatIn 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28),
+    floatOut 0.5s ease-in 1.7s forwards;
   backdrop-filter: blur(8px);
   letter-spacing: 0.5px;
 }
@@ -562,13 +562,25 @@
 }
 
 @keyframes floatIn {
-  from { opacity: 0; transform: translateY(15px) scale(0.9); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @keyframes floatOut {
-  from { opacity: 1; transform: translateY(0) scale(1); }
-  to { opacity: 0; transform: translateY(-15px) scale(0.9); }
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-15px) scale(0.9);
+  }
 }
 
 /* Mejoras para la sección completa de ranking */
@@ -584,7 +596,7 @@
 }
 
 .ranking::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -605,7 +617,7 @@
 }
 
 .ranking h2::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
